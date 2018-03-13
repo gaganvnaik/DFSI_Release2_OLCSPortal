@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable">
+<aura:attribute name="latitude" type="Decimal" default="0"/>
+<aura:attribute name="longitude" type="Decimal" default="0"/>
+<aura:attribute name="insideOutside" type="string" default=""/>
+   <aura:handler event="c:CTP_GoogleMap_Event"
+    action="{!c.handleEvent}"/>
+    <ltng:require styles="/resource/leaflet/leaflet.css" />    
+    <ltng:require scripts="/resource/leaflet/leaflet.js"
+             afterScriptsLoaded="{!c.jsLoaded}" />
+	<div id="mapContain" style="">
+ 
+  	</div> 
+</aura:component>

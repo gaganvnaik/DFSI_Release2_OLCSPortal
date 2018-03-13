@@ -1,0 +1,101 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" controller="CTP_StartNewClaimAppController" >
+    <aura:attribute name="indexVar" type="Integer"/>
+    <aura:attribute name="childClaimHistory" type="CTP_Claim__c" default="{'sobjectType': 'CTP_Claim__c'}"/>
+    <!-- commented default value for the below attribute as part of 5016 -->
+    <aura:attribute name="previousInsurerValues" type="String[]"/>
+    <aura:attribute name="monthLimit" type="Integer" default="12"/>
+    <aura:attribute name="insurerSelected" type="string" default="No"/>
+    <aura:attribute name="insurerFromParent" type="string"/><!--DCR-5016 -->
+    
+    <aura:handler event="c:CTP_HistoryvalidationEvent" action="{!c.validateClaimsHistory}"/>
+    <aura:registerEvent name="cmpClaimsHistorytoCase" type="c:ClaimsParentEvent"/>
+     <aura:attribute name="validationsMap" type="Map" default="{
+                                                              'claimHistory_insurer':[{'mandatory': true, 'errorElem':'claimHistoryInsurerErr'}],
+                                                              'otherClaimHistoryInsurer':[{'mandatory': true, 'errorElem':'otherClaimHistoryInsurerErr'}], 
+                                                              }"/>
+    <aura:method name="claimHistoryValidateAll" action="{!c.validateAll}" access="PUBLIC"/> 
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" /> 
+    <!-- <aura:attribute name="injuryMonth" type="string" default=""/>
+    <aura:attribute name="injuryYear" type="string" default=""/> -->
+    
+    <!-- All Handlers And Events -->
+    <aura:registerEvent name="removeClaimHistory" type="c:removeClaimHistory"/> 
+    
+    <div class="claimHistoryForm">
+        <c:CTP_UI_AccordionItem isOpen="true" title="CTP claim" count="{!v.indexVar}" titleRight="">
+            <aura:set attribute="body">
+                <div class="slds-p-around_medium slds-m-bottom_medium specialRadio">
+                    <h1 class="slds-text-subheading_medium"><b>Please try to provide as much information as possible. Leave fields blank if unknown.</b></h1>
+                    <br />
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">
+                            <b>Date of injury (Enter known dates)</b>
+                        </label>
+                        <div class="slds-form-element__control slds-p-vertical_x-small slds-form-element__label">
+                            <div class="slds-grid slds-wrap slds-grid_pull-padded-small">
+                                <div class="slds-size_6-of-12 slds-medium-size_6-of-12 slds-p-horizontal_small">
+                                    <div class="slds-form-element__control">
+                                        <ui:inputSelect aura:id="injuryMonth" class="" value="{!v.childClaimHistory.CTP_Month_of_Injury_1__c}"></ui:inputSelect> 
+                                     
+                                  </div> 
+                                    
+                                </div>
+                                <div class="slds-size_6-of-12 slds-medium-size_6-of-12 slds-p-horizontal_small">
+                                    <div class="slds-form-element__control">
+                                        <ui:inputSelect aura:id="injuryYear" class="" value="{!v.childClaimHistory.CTP_Year_of_Injury_1__c}" change="{!c.onChangeYear}"></ui:inputSelect> 
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        
+                        <label class="slds-form-element__label">
+                            <b>Claim number</b>
+                        </label>
+                        <div class="slds-form-element__control slds-p-vertical_x-small slds-form-element__label">
+                            <ui:inputText aura:id="injuryClaimNumber"  change="{!c.validateMaxLength}"  placeholder="123456789" value="{!v.childClaimHistory.CTP_Previous_Claim_Number_1__c}"/> 
+                             <div class="slds-form-element__help error slds-hidden" aria-live="assertive" aura:id="claimNumberMax">Claim number cannot be more than 50 characters</div>
+
+                        </div>
+                        
+                        <label class="slds-form-element__label">
+                            <b>CTP insurer that managed the claim</b>
+                        </label>
+                        <div class="slds-form-element__control slds-p-vertical_x-small slds-form-element__label">
+                            <!-- 5016 START changed code to get the insurer value sent from parent component to be selected -->
+                            <ui:inputSelect aura:id="claimHistory_insurer" class="" 
+                                            value="{!v.childClaimHistory.CTP_Previous_Insurer_1__c}" 
+                                            change="{!c.selectedInsurer}">
+                                <aura:iteration items="{!v.previousInsurerValues}" var="item">
+                                    <aura:if isTrue="{!v.insurerFromParent == item}">
+                                    	<ui:inputSelectOption text="{!item}" label="{!item}" value="true"/> 
+                                        <aura:set attribute="else">
+                                            <ui:inputSelectOption text="{!item}" label="{!item}"/> 
+                                        </aura:set>
+                                    </aura:if>                                    
+                                </aura:iteration>
+                            </ui:inputSelect> 
+                         	<!-- 5016 END -->
+                         
+                            <div class="slds-form-element__help error slds-hidden" aria-live="assertive" aura:id="claimHistoryInsurerErr">Please select the CTP Insurer that your previous claim was with</div>
+                        </div>
+                        <aura:if isTrue="{!v.childClaimHistory.CTP_Previous_Insurer_1__c=='Other'}">
+                            <div>
+                                <label class="slds-form-element__label">
+                                    <b>Enter other insurer name</b>
+                                </label>
+                                <div class="slds-form-element__control slds-p-vertical_x-small slds-form-element__label">
+                          
+                                    <ui:inputText aura:id="otherClaimHistoryInsurer" class="" blur="{!c.validateClaimHistoryOtherInsurer}" value="{!v.childClaimHistory.CTP_Previous_CTP_Insurer_Other_1__c}" placeholder="Other Insurer Name"/>
+                                    <div class="slds-form-element__help error slds-hidden" aria-live="assertive" aura:id="otherClaimHistoryInsurerErr">Please type in the name of the insurer your previous claim was with</div>
+                                </div>
+                            </div>
+                        </aura:if>
+                    </div>
+                </div>
+                <lightning:button label="- Remove claim" class="full-width" name="{!v.indexVar}" onclick="{!c.removeClaimHistory}"/>
+            </aura:set>
+        </c:CTP_UI_AccordionItem>
+    </div>
+</aura:component>

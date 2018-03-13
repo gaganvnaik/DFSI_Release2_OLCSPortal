@@ -1,0 +1,1720 @@
+.THIS .button-back {
+    font-weight: 300;
+    color: #979797;
+}
+
+.THIS .button-back .slds-icon {
+    width: 12px;
+    margin-right: 3px;
+}
+
+.THIS .claimDetailsForm .heading_large{
+    font-size: 40px; 
+    color: #3b435b;
+}
+
+.THIS .claimDetailsForm .heading_medium{
+    font-size: 24px; 
+    color: #3b435b;
+}
+
+.THIS .claimDetailsForm .heading_small{
+    font-size: 18px; 
+    color: #3b435b;
+}
+
+.THIS .slds-text-subheading_medium{
+    font-size: 15px; 
+    color: #3b435b;
+}
+
+.THIS .claimDetailsForm .step1 .slds-form-element__label{
+    font-size: 18px; 
+}
+
+.THIS .declaration{
+    position:relative;
+}
+
+.THIS .declarationText {
+    position: absolute;
+    left: 37px;
+    top: 0;
+    padding-bottom:100px;
+}
+
+.THIS .claimDetailsForm{
+    padding-bottom:100px;
+    padding:0 7%;
+}
+
+.THIS ul.listLeftMargin{
+    margin-left:35px;
+}
+
+.THIS ul.declarationAuthorisation,
+.THIS ul.declarationList, 
+.THIS ul.findOutList,
+.THIS ul.evidenceTreatmentList{
+    list-style:disc;
+}
+
+.THIS .declarationList li,
+.THIS .findOutList li,
+.THIS ul.evidenceTreatmentList li{
+    padding:5px 0;
+    margin:0 40px;
+}
+
+.THIS .declarationList li:first-child{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+.THIS .selfDeclarationText{
+    padding:20px 0;
+}
+
+.THIS .selfDeclarationText input{
+    width:92%;
+}
+
+.THIS .slds-checkbox{
+    margin: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 2px;
+    border: solid 1px #1ea4f4;
+}
+
+.THIS .attentionPopUp .slds-checkbox{
+    display: inline-block;
+    float: left;
+    margin-right: 15px;
+}
+
+.THIS .slds-form-element_note{
+    font-size: 12px;
+    color:#1b436f;
+}
+.THIS .slds-radio .slds-radio_faux, 
+.THIS .slds-radio .slds-radio--faux {
+    width:1.572em;
+    height:1.572em;
+}
+
+.THIS .slds-form-element__control .slds-radio {
+    display:inline-block;
+    margin-right:2.5625em;
+}
+
+.THIS .ambulanceOptions .slds-form-element__control .slds-radio {
+   display:block;
+   padding:5px 0;
+}
+
+.THIS .accident-address-error{
+  margin-top: 50px    
+}
+
+.THIS .slds-radio [type="radio"]:checked + .slds-radio_faux::after,
+.THIS .slds-radio [type="radio"]:checked + .slds-radio--faux::after, 
+.THIS .slds-radio [type="radio"]:checked ~ .slds-radio_faux::after, 
+.THIS .slds-radio [type="radio"]:checked ~ .slds-radio--faux::after, 
+.THIS .slds-radio [type="radio"]:checked + .slds-radio__label .slds-radio_faux::after, 
+.THIS .slds-radio [type="radio"]:checked + .slds-radio__label .slds-radio--faux::after{
+    background:#1589ee;
+    width:0.75em;
+    height:0.75em;
+}
+
+.THIS .radioGroup .slds-form-element,
+.THIS .claimHistory .slds-form-element,
+.THIS .employerHistory .slds-form-element,
+.THIS .prevInjuryHistory .slds-form-element,
+.THIS .preferredEmail .slds-form-element{
+    margin-bottom:0;
+}
+
+.THIS .claimHistoryForm .slds-button.full-width,
+.THIS .employerHistoryForm .slds-button.full-width,
+.THIS .prevInjuryHistoryForm .slds-button.full-width,
+.THIS .vehiclesHistoryForm .slds-button.full-width{
+    background-color: rgba(193, 198, 208, 0.2);
+    border:0;
+}
+
+.THIS .claimHistory,
+.THIS .prevInjuryHistoryForm,
+.THIS .employerHistory,
+.THIS #claimantRepresentation{
+    padding-bottom:15px;
+}
+
+.THIS .claimHistoryForm li,
+.THIS .prevInjuryHistoryForm li,
+.THIS .employerHistoryForm li{
+    list-style: none;
+}
+
+.THIS .payment label img{
+    float:left;
+}
+.THIS .payment label span{
+    padding-top:12px;
+}
+.THIS .hover_image{
+    display:none;    
+}
+.THIS .radio-special .uiInput--default.uiInput--radio input:checked ~ label img:nth-child(2){
+    display: block;
+    margin: auto;
+    
+}
+.THIS .radio-special .uiInput--default.uiInput--radio input:checked ~ label img:nth-child(1){
+    display: none;
+    
+}
+.THIS .radio-special .uiInput--default.uiInput--radio:hover {
+    cursor:pointer;
+}
+
+.THIS .injuries{
+    border: solid 1px #c1c6d0;
+    text-align:center;
+    margin-bottom:15px;
+    border-radius:3px;
+}
+
+.THIS .injuries input{
+    border:0;
+}
+
+.THIS .injuries .slds-col{
+    vertical-align:middle;
+}
+
+.THIS .injuries h3 {
+    background-color: #1589ee;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.THIS .injuries .action-icon{
+    padding: 10px;
+}
+
+.THIS .injuries .slds-button__icon{
+    fill:#3b435b;
+}
+
+.THIS .paymentDetailsSection .slds-form-element__help{
+    margin-bottom:10px;
+}
+
+.THIS .paymentDetailsSection .slds-form-element__help img{
+    padding-right:10px;
+}
+
+.THIS .timeContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width:300px;
+    height:145px;
+    box-shadow: 0 4px 5px 0 rgba(114, 112, 112, 0.5);
+  	border: solid 1px #c1c6d0;
+    border-radius: 4px;
+    margin:20px 0;
+    position:relative;
+    background: #ffffff;
+    z-index:1098;
+}
+.THIS .timeContainer:after, .THIS .timeContainer:before {
+	bottom: 100%;
+	left: 8%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.THIS .timeContainer:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #ffffff;
+	border-width: 15px;
+	margin-left: -15px;
+}
+.THIS .timeContainer:before {
+	border-color: rgba(193, 198, 208, 0);
+	border-bottom-color: #c1c6d0;
+	border-width: 16px;
+	margin-left: -16px;
+}
+
+.THIS .timeContainer .arrow  svg:focus , .THIS .timeContainer .arrow  svg:hover,
+.THIS .timeContainer .arrow.active  svg , .THIS .timeContainer .arrow.active svg{
+    fill: #0070d2;
+}
+
+.THIS .timeContainer .item{
+    width:45px;
+    text-align: center;
+    height:130px;
+    vertical-align:middle;
+    margin:10px;
+}
+.THIS .timeContainer-cover{
+    width: 1200px;
+    height: 1000px;
+    z-index: 1097;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display:block;
+    cursor: default;
+}
+
+.THIS .timeContainer .divider{
+    padding-top:50px;
+}
+.THIS .timeContainer .item.btnItem{
+    width:95px;
+    padding-top:30px;
+}
+.THIS .timeContainer input{
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  border: solid 1px #a8b7c7;
+  padding:0;
+  text-align:center;
+}
+
+.THIS .timeContainer button{
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  background-color: rgba(193, 198, 208, 0.25);
+  color: #c1c6d0;
+  margin:0;
+}
+
+.THIS .timeContainer .btnActive {
+    outline: 0;
+    background-color: #0086db;
+    color:#ffffff;
+}
+.THIS .mostAtFaultVehicle{
+    padding-bottom: 50px;
+}
+.THIS .mostAtFaultVehicle .attentionPopUp{
+   min-height: 300px;
+   height:auto; 
+}
+
+.THIS .mostAtFaultVehicle .warningPopUp:after{
+   left:1.5625em;
+}
+
+
+.THIS .mostAtFaultVehicle .warningPopUp.attentionPopUp.unsure:after{
+    left:20.5625em;
+}
+.THIS .noVehiclesInvolved.warningPopUp:after{
+   left:7.5625em;
+}
+
+.THIS .mostAtFaultVehicle .warningPopUp.attentionPopUp:after{
+   left:7.5625em;
+}
+/*Himani DCR-3651*/
+.THIS .warningPopUp.attentionPopUp.NSWMap:after{
+    left:1.5625em;
+}
+
+.THIS .warningPopUp.NSWMapError:after{
+    left:1.5625em;
+}
+/*Himani DCR-3651*/
+.THIS .vehicleRegContainer{
+  border-radius: 5px;
+  border: solid 1px #c1c6d0;
+}
+
+.THIS .vehicleRegContainer .pannelTop{
+    background-color: #d8d8d8;
+    border-bottom: solid 1px #979797;
+    min-height:100px;
+    height:auto;
+    padding:20px;
+}
+
+.THIS .vehicleRegContainer .pannelBody{
+    padding:20px;
+}
+
+.THIS .vehicleRegContainer .technicalIssue,
+.THIS .vehicleRegContainer .registeredVehicleInfoSuccess{
+    padding:20px;
+}
+.THIS .registeredVehicleInfo{
+    padding:15px 0;
+    border-bottom: solid 1px #c1c6d0;
+}
+
+.THIS .registeredVehicleInfo .label{
+    width: 65px;
+    display: inline-block;
+}
+
+.THIS .registeredVehicleInfo img{
+    margin: 20px 5px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+.THIS .registeredVehicleInfo .text{
+    padding: 0 20px;
+ 	opacity: 0.39;
+  	border-left: solid 2px #c1c6d0;
+}
+
+.THIS .technicalIssue .registeredVehicleInfo .text{
+    opacity: none;
+}
+
+.THIS .registeredVehicleInfoFail .slds-icon-text-default,
+.THIS #accidentDocuments .slds-icon-text-default{
+    fill:#e8007f;
+}
+.THIS #accidentDocuments .helpText .slds-icon_container{
+    border: 1px solid #1589ee;
+    padding: 0 3px;
+}
+
+.THIS #vehiclesInvolvedSection{
+    padding-bottom:50px;
+}
+
+.THIS #vehiclesInvolvedSection .warningPopUp.attentionPopUp{
+    min-height:300px;
+}
+
+.THIS .uiInput--default.has-error .form-element__help,
+.THIS .uiInputDefaultError .form-element__help{
+    font-size:1em;
+    color:#e8007f;
+}
+
+.THIS .has-error.slds-error{
+    font-size:1em;
+    color:#e8007f;
+    margin-top:.5rem;
+    display:block;
+}
+
+/*accidentSketchPopUp style */
+
+.THIS .accidentSketchPopUp{
+    border-radius: 14px;
+    background-color: #00629b;
+    box-shadow: -5px 0 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 7.55em 5%;
+    min-height: calc(100vh - 90px); /* 90px = header + progress bar */
+    color: #ffffff;
+    z-index:100;
+    position:fixed;
+    right:0;
+    top:0;
+    width:41.6667%;
+    bottom:0;
+    overflow-y:scroll;
+}
+.THIS .accidentSketchPopUpContainer.displayPopUp{
+    display:block;
+}
+.THIS #accidentDocuments .accidentSketchPopUp .slds-icon-text-default{
+    fill:#ffffff;
+}
+.THIS .accidentSketchPopUp:after, 
+.THIS .accidentSketchPopUp:before {
+	right: 100%;
+	top: 11%;
+	border: solid transparent;
+	content: "";
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	pointer-events: none;
+    left:0;
+    margin-left:-50px;
+    background-color: #00629b;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+    box-shadow: -5px 0 4px 0 rgba(0, 0, 0, 0.25);
+    padding:10px 5px;
+}
+
+.THIS .accidentSketchPopUpContainer{
+    display:none;
+}
+
+.THIS .accidentSketchPopUpContainer .closePopup{
+    position: fixed;
+    left:55%;
+    top:15%;
+    z-index:10;
+    text-align:center;
+    height: 50px;
+	width: 60px;
+    background-color: #00629b;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+    box-shadow: -5px 0 4px 0 rgba(0, 0, 0, 0.25);
+    padding:5px;
+    z-index:200;
+}
+.THIS .accidentSketchPopUpContainer .closePopup a{
+    color:#ffffff;
+    font-size:12px;
+    display:block;
+}
+
+.THIS .accidentSketchPopUpContainer .closePopupBtn{
+	display:none;    
+}
+
+.THIS #accidentDocuments .accidentSketchPopUpContainer .closePopup .slds-icon-text-default{
+    fill:#ffffff;
+}
+.THIS .accidentSketchPopUp .heading {
+  font-size: 30px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.27;
+  letter-spacing: normal;
+  text-align: left;
+}
+
+.THIS .accidentSketchPopUp .subheading{
+    display:flex;
+}
+
+.THIS .accidentSketchPopUp .active .hover_image{
+    display:none;    
+}
+.THIS .accidentSketchPopUp .active .actual_image{
+    display:block;    
+}
+
+.THIS .accidentSketchPopUp .onlineSketchLabel,
+.THIS .accidentSketchPopUp .freehandSketchLabel{
+    width:60px;
+    margin:15px 30px;
+}
+
+.THIS .accidentSketchPopUp .onlineSketchLabel .text,
+.THIS .accidentSketchPopUp .freehandSketchLabel .text{
+    margin-top:15px;
+    display:block;
+    font-size: 20px;
+  	font-weight: 500;
+    line-height: 1.2;
+}
+
+.THIS .accidentSketchPopUp .divider{
+    border-right: solid 1px #ffffff;
+}
+
+.THIS .accidentSketchPopUp .container{
+    border: solid 2px #ffffff;
+    padding:20px;
+    width:430px;
+    height:600px;
+    margin-top:20px;
+    margin-left:0;
+    position: relative;
+}
+
+.THIS .accidentSketchPopUp .container:after, 
+.THIS .accidentSketchPopUp .container:before {
+	bottom: 100%;
+	left: 15%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.THIS .accidentSketchPopUp .freehandSketch.container:after, 
+.THIS .accidentSketchPopUp .freehandSketch.container:before{
+    left:45%;
+}
+
+.THIS .accidentSketchPopUp .container:after {
+	border-color: rgba(0,98,155,0);
+	border-bottom-color: #00629b;
+	border-width: 30px;
+	margin-left: -30px;
+}
+.THIS .accidentSketchPopUp .container:before {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #ffffff;
+	border-width: 33px;
+	margin-left: -33px;
+}
+
+.THIS .accidentSketchPopUp .container .title{
+    font-size: 19px;
+    font-weight: normal;
+}
+
+.THIS .accidentSketchPopUp .container .path{
+    font-size: 16px;
+}
+
+.THIS .accidentSketchPopUp .container .path .step{
+    width:120px;
+    text-align:center;
+    padding:10px 0;
+}
+.THIS .accidentSketchPopUp .container .step1 a{
+  color:#ffffff;
+  opacity:0.4;
+}
+.THIS .accidentSketchPopUp .container .step1{
+   padding:20px 25px;
+   position:relative; 
+}
+
+.THIS .accidentSketchPopUp .container .step2{
+   position:relative;
+}
+
+.THIS .accidentSketchPopUp .container.freehandSketch .path .step.step4{
+    padding-top:80px;
+}
+
+.THIS .accidentSketchPopUp .container .step .accident-path1{
+    background-image: url(../resource/Public_claimAssets/img/path-1.svg);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 24px;
+    left: 0px;
+    width: 30px; 
+    height: 100px;
+}
+
+.THIS .accident-path2{
+  background-image:url("../resource/Public_claimAssets/img/path-4.svg"); 
+  background-repeat:no-repeat;
+  position: absolute;
+  top: 10px;
+  left: 54px;
+  width: 300px;
+  height: 100px;
+}
+
+ 
+.THIS .accidentSketchPopUp .container .step3{
+  position:relative;
+}
+
+.THIS .accident-path3 {
+  background-image: url("../resource/Public_claimAssets/img/path-3.svg"); 
+  background-repeat:  no-repeat;
+  position: absolute;
+  top: 23px;
+  right: 0px;
+  width: 252px;
+  height: 100px;
+}
+
+
+.THIS .accident-path4 {
+  background-image: url("../resource/Public_claimAssets/img/path-4.svg"); 
+  background-repeat:  no-repeat;
+  position: absolute;
+  top: 40px;
+  left: 64px;
+  width: 252px;
+  height: 100px;
+}
+
+.THIS .freehand-path1{
+    background-image: url(../resource/Public_claimAssets/img/path-2.svg);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 4px;
+    left: 54px;
+    width: 290px;
+    height: 100px;
+}
+
+.THIS .freehand-path2{
+  background-image: url(../resource/Public_claimAssets/img/path-3.svg);
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 36px;
+  left: -130px; 
+  width: 205px;
+  height: 111px;
+}
+ 
+ .THIS .freehand-path3 {
+      background-image: url(../resource/Public_claimAssets/img/path-2.svg);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 2px;
+    left: 45px;
+    width: 252px;
+    height: 100px;
+}
+
+
+.THIS .accidentSketchPopUp .container .step4{
+    position:relative;  
+}
+
+.THIS .accidentSketchPopUp .container .path .step .text{
+	display:block;
+}
+.THIS .accidentSketchPopUp .container .path .step .text a{
+    opacity: 0.4;
+}
+    
+
+.THIS .accidentSketchPopUp .container .path .col-right{
+    padding-top:50px;
+}
+.THIS .accidentSketchPopUp .onlineSketch,
+.THIS .accidentSketchPopUp .freehandSketch{
+    display:none;
+}
+.THIS .accidentSketchPopUp .onlineSketch.displayContainer,
+.THIS .accidentSketchPopUp .freehandSketch.displayContainer{
+    display:block;
+}
+
+.THIS .accidentSketchPopUp .freehandSketchLabel,
+.THIS .accidentSketchPopUp .onlineSketchLabel{
+    cursor:pointer;
+    color:#ffffff;
+    opacity: 0.4;
+}
+.THIS .accidentSketchPopUp .freehandSketchLabel label,
+.THIS .accidentSketchPopUp .onlineSketchLabel label{
+    cursor:pointer;
+}
+.THIS .accidentSketchPopUp .freehandSketchLabel.active,
+.THIS .accidentSketchPopUp .onlineSketchLabel.active{
+    opacity: unset;
+}
+
+.THIS .confirmationContainer{
+    padding:0.5em 1.5em 0.5em 0.75em;
+}
+
+.THIS .confirmationContainer .slds-form-element__label,
+.THIS .confirmationContainer .slds-form-element__static{
+    width:45%;
+}
+.THIS .confirmationContainer .slds-button{
+    color: #0086db;
+}
+.THIS .confirmationContainer svg{
+    fill:#0086db;
+}
+
+.THIS .declationAuthorisation{
+  background-color: #ffffff;
+  border: solid 1px #a8b7c7;
+  padding:15px;
+  margin-bottom:50px;
+}
+
+.THIS #previousIllnessSection{
+    padding-bottom:50px;
+}
+
+.THIS .fraudTextContainer{
+  border-radius: 4px;
+  border: solid 1px #c1c6d0; 
+  padding:20px;
+  margin:35px 0 0;
+  border-left-width: 20px;
+  border-left-color: #6c5683;
+  background-color:#ffffff;
+}
+
+/*.THIS .circleBackground {
+    margin: 10px 0;
+    background-color: #c1c6d0;
+    border: 1px solid #c1c6d0;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    vertical-align: middle;
+} */
+
+.THIS .circleBackground img {
+	padding-top:5px;
+}
+
+.THIS .toggle {
+    display: none;
+}
+.THIS .collapse{
+    display:none;
+}
+
+.THIS .cllapseExpand{
+    width:100%;
+    text-align:right; 
+    color: #3b435b;
+}
+
+.THIS .cllapseExpand .slds-button{
+    color: #3b435b;
+    font-size:12px;
+}
+
+.THIS .cllapseExpand .slds-button__icon{
+    fill: #1589ee;
+}
+
+.THIS .customScrollBar{
+  height:250px;
+  overflow:auto;
+  border-right: solid 1px #a8b7c7;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.THIS .customScrollBar::-webkit-scrollbar
+{
+	width: 10px;
+    background-color: rgba(193, 198, 208, 0.2);
+  	border: solid 1px #a8b7c7;
+    border-radius: 4px;
+}
+
+.THIS .customScrollBar::-webkit-scrollbar-thumb
+{
+  border-radius: 4px;
+  background-color: #c1c6d0;
+  border: solid 1px #a8b7c7;
+  height:100px;
+}
+
+
+/* Modal styles */
+.THIS .modalSubmission .commonModel header p{
+  font-family: Roboto;
+  font-size: 32px;
+  font-weight: 300;
+  text-align:left;
+}
+.THIS .modalSubmission .commonModel .slds-modal__header .slds-icon-text-default{
+    fill:#ffffff;
+}
+.THIS .modalSubmission .commonModel .slds-modal__header .closeModal{
+    float:right;
+    cursor:pointer;
+}
+.THIS .modalSubmission .commonModel .grayBackground{
+    background-color: #fafbfb;
+    font-family: Roboto;
+  	font-size: 14px;
+    color: #1b436f;
+}
+.THIS .modalSubmission .commonModel .grayBackground ul{
+    list-style:disc;
+    margin-left:15px;
+}
+.THIS .modalSubmission .commonModel .grayBackground .slds-grid {
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(59, 67, 91, 0.43);
+    border: dashed 1px #c1c6d0;
+    font-size: 18px;
+    color: #e8007f;
+    padding:15px 10px;
+    margin-bottom:15px;
+}
+.THIS .modalSubmission .commonModel .grayBackground .slds-grid .infoContainer .sectionHeader,
+.THIS .modalSubmission .commonModel .grayBackground .sectionPinkHeader{
+    font-size: 20px;
+    font-weight: 500;
+    color: #e8007f;
+}
+.THIS .modalSubmission .commonModel .grayBackground .sectionHeader{
+    font-family: Roboto;
+  	font-size: 16px;
+    color: #3b435b;
+}
+
+.THIS .modalSubmission .commonModel .slds-modal__footer{
+  background-color: #ffffff;
+  border: solid 1px #c1c6d0;
+  height:90px;
+  padding:20px;
+}
+
+.THIS .modalSubmission .commonModel .slds-modal__footer .returnToApplication{
+    font-size: 15px;
+    font-family: Roboto;
+    color: #1b436f;
+    padding: 11px 0 0 0;
+    display: inline-block;
+    margin-right: -24px;
+}
+
+.THIS .modalSubmission .commonModel .grayBackground .slds-grid.plaintext {
+    background-color: transparent;
+    box-shadow: none;
+    border: 0;
+    font-size: 18px;
+    color: #1b436f;
+}
+
+.THIS .modalSubmission .commonModel .boldText{
+    font-weight: 500;
+}
+
+.THIS .modalSubmission .commonModel .slds-modal__footer .slds-button_brand{
+    font-size: 16px;
+}
+
+.THIS .modalSubmission .commonModel .borderSpacer{
+    border:none;
+    border-left:1px solid #c1c6d0;;
+    height:80%;
+    display:inline-block;
+    margin-left:10px;
+    margin-top:10px;
+}
+.THIS .modalSubmission .commonModel .borderSpacer.insurerAssigned{
+    height:auto;
+}
+
+.THIS .modalSubmission.insurerModel .commonModel .grayBackground {
+    padding: 30px 30px 0;
+} 
+
+.THIS .modalSubmission.insurerModel .commonModel .grayBackground .slds-grid{
+    padding:0;
+}
+
+.THIS .modalSubmission.insurerModel .commonModel .insurerInfo{
+    clear: both;
+    text-align: left;
+    padding: 0 20px 10px;
+    color: #fff;
+}
+
+
+.THIS .survey{
+  background-color: #ffffff;
+  min-height:250px;
+  overflow:none;
+  padding:15px;
+  margin-bottom:50px;
+  border-radius: 4px;
+    border: solid 1px #c1c6d0;
+    padding: 20px;
+    margin: 35px 0 0;
+    border-left-width: 20px;
+    border-left-color: #6c5683;
+}
+
+.THIS .survey-header{
+  font-size: 22px;
+  color: #3b435b;
+ }
+
+.THIS .survey-subheader{
+  font-size: 16px;
+  font-weight: 550;
+ }
+
+.THIS .survey-text {
+    padding: 30px 6px 0px 16px;
+}
+
+.THIS .survey-question {
+	padding: 10px 6px 0px 16px;
+}
+
+.THIS .customListBox{
+    border:0;
+}
+
+/* helpModal style */
+
+.THIS .helpModal .slds-modal__container{
+  background-color: #00629b;
+  color:#ffffff;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 300;
+  padding:0;
+  max-width:initial;
+}
+
+.THIS .helpModal .slds-modal__container .container{
+    margin-top:-15%;
+    width:745px;
+}
+.THIS .helpModal .slds-modal__container .container .closeBtn{
+    float:right;
+} 
+
+.THIS .helpModal .slds-modal__container .container .circle{
+    border:3px solid #fff;
+    border-radius:50%;
+    padding:10px;
+    text-align:center;
+    width:90%;
+}
+
+.THIS .helpModal .slds-modal__container .container .slds-icon-text-default{
+    fill:#ffffff;
+}
+
+.THIS .helpModal .slds-modal__container .container .header{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.THIS .helpModal .slds-modal__container .container .helptext{
+    font-size: 16px;
+    font-weight: 500;
+} 
+
+.THIS .helpModal .slds-modal__container .container .slds-button_neutral_secondary{
+   border:1px solid #ffffff; 
+   background-color:transparent;
+   color:#ffffff;
+   font-weight:normal;
+}
+.THIS .helpModal .slds-modal__container .container .slds-grid{
+    margin-bottom:15px;
+    margin-top:30px;
+}
+.THIS .helpModal .slds-modal__container .container .heading{
+    margin-left:5px;
+}
+.THIS .helpModal .slds-modal__container .closeModel{
+    width:10%;
+    display:block;
+    float:right;
+    text-align:right;
+    padding-top:15px;
+    position: absolute;
+    left: 65%;
+    top:10%;
+}
+.THIS .helpModal .slds-modal__container .close {
+    width: 32px;
+    height: 32px;
+    float: right;
+    position: relative;
+}
+
+
+.THIS .helpModal .slds-modal__container .close:before, 
+.THIS .helpModal .slds-modal__container .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 30px;
+    width: 2px;
+    background-color: #ffffff;
+}
+
+.THIS .helpModal .slds-modal__container .close:hover:before, 
+.THIS .helpModal .slds-modal__container .close:hover:after {
+    background-color: rgba(255,255,255,0.5);
+}
+
+.THIS .helpModal .slds-modal__container .close:before {
+    transform: rotate(45deg);
+}
+
+.THIS .helpModal .slds-modal__container .close:after {
+    transform: rotate(-45deg);
+}
+
+.THIS .optional{
+    cursor:pointer;
+}
+
+
+/* sticky Footer */
+
+.THIS .stickyFooter {
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    width: 39%;
+    padding-bottom: 16px;
+}
+
+.THIS .stickyFooter hr {
+    margin: 0 0 1.5rem;
+    box-shadow: 0 -10px 10px -10px #dddfe4 inset;
+    height: 5px;
+    border: 0;
+}
+
+.THIS .uploadedFiles{
+    border: solid 1px #c1c6d0;
+    padding:20px;
+}
+.THIS .uploadedFiles .slds-truncate{
+    display:inline-block;
+    padding-left:15px;
+    vertical-align:middle;
+}
+
+.THIS .uploadedFiles .slds-truncate a, 
+.THIS .uploadedFiles .slds-truncate a:hover,
+.THIS .uploadedFiles .slds-truncate a:active{
+    color: #3b435b;
+}
+.THIS .uploadedFiles .slds-grid{
+    padding:0 0 15px 0;
+}
+
+.THIS .alignRight{
+    text-align:right;
+}
+
+.THIS .fileAttachment .filename{
+    padding-left:15px;
+}
+.THIS .fileAttachment .uploading-status{
+    margin-left:0;
+}
+
+.THIS .pinkColorText{
+   color: #e8007f;
+}
+
+.THIS .blueColorText{
+   color: #1589ee;
+}
+
+.THIS .pinkColorTextBold{
+   color: #e8007f;
+   font-size: 24px;
+   font-weight: 500;
+}
+
+/* modal designing */
+.THIS .commonModel header{
+    background-color: #1589EE;
+    border:0;
+    padding: 3px;
+}
+.THIS .commonModel header p{
+    color: #fff;
+    font-size: 32px;
+    padding:20px;
+    float: left;
+}
+.THIS .commonModel .slds-modal__content{
+    text-align:left;
+    padding:30px;
+    font-size:18px;
+}
+.THIS .commonModel .subheading{
+    font-weight:1000;
+    color:#ED0080;
+    font-size:24px;
+    
+}
+
+.THIS .commonModel .PIBA{
+    font-size:18px;
+    color:#404565;
+    
+}
+.THIS .commonModel .refClass{
+    
+    color:#404565;
+    font-size:15px;
+    
+}
+.THIS .commonModel .createddate{
+   
+    color:#AFB1BE;
+    font-size:12px;
+    
+}
+.THIS .commonModel .Stage1ContentSpace{
+    
+    padding-bottom: 40px;
+}
+
+
+
+.THIS .commonModel .slds-modal__footer{
+    background-color: #fafafa;
+    height:70px;
+    border:0;
+    text-align: right;
+    font-weight: 500;
+}
+.THIS .commonModel .Save-as-draft{
+    padding-right:50px;
+    font-size:18px;
+    color:#1b436f;
+    text-decoration:none;
+}
+
+.THIS .parent {
+ margin-bottom:50px;    
+}
+
+.THIS .claimantDetails {
+    background-color: #fafafa;
+  	padding:20px 5px;
+    margin:20px -5px;
+    border-top: solid 3px #0086db;
+    border-bottom: solid 3px #0086db;
+}
+.THIS .claimantDetails .heading_medium.blue{
+    color: #0086db;
+}
+
+/*DCR-2836 */
+.THIS .stickyFooter .SaveAndExit{
+    font-size:20px;
+    color:#1b436f;
+    font-weight: 500;
+    text-decoration:underline;
+}
+
+.THIS .stickyFooter .next,
+.THIS .stickyFooter .submit{
+    margin-right:16px;   
+}
+
+.THIS .commonModel .slds-modal__footer .slds-button{
+    font-size:20px;
+    font-weight:500;
+    background-color:#ED0080;
+    width:35%;
+    color:white;
+    padding:1%;
+}
+
+
+.THIS .submission-percentage {
+    color: #e8007f;
+    font-size: 24px;
+    padding-top: 24px;
+    text-align: center;
+}
+
+.THIS .estimated-submission {
+  font-size: 22px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.28;
+  letter-spacing: normal;
+  text-align: center;
+  color: #1b436f;
+  padding:24px 0;
+}
+
+.THIS .submit-progress-bar {
+  padding-top:12px;  
+}
+
+.THIS .submit-progress-bar .slds-progress-bar {
+  background: rgba(155, 155, 155, 0.16);    
+  height: 20px;
+  border-radius: 8px;
+}
+
+.THIS .submit-progress-bar .slds-progress-bar__value {
+  height: 20px;
+  border-radius: 8px;
+  background-color: #e8007f;
+}
+
+.THIS .commonModel .slds-modal__content {
+    padding: 24px 30px;
+}
+
+.THIS .footer-spacing {
+    padding-bottom: 84px;
+}
+
+
+.THIS .treatmentAtHospital .slds-radio {
+    display: block;
+    padding: 4px 0 8px 0;
+}
+
+.THIS .find-address {
+    text-align: center;
+    color: rgb(0, 134, 219);
+    background-color: #f3f5f9;
+    margin-bottom: -4px;
+    padding: 6px 0;
+}
+
+.THIS .back-to-map,
+.THIS .back-to-map:hover{
+    font-size: 14px;
+    font-weight: 400;
+    color: #1589ee;
+    text-decoration: none;
+}
+.THIS .mobileView{
+    display:none;
+}
+
+.THIS #payment .slds-form-element{
+    margin-bottom:0;
+}
+
+.THIS .accidentSketchPopUpContainer .closeIcon{
+    display: none;
+}
+ .THIS .stickyFooter .slds-spinner{
+    margin-left:-160px;
+}
+
+.THIS .commonModel .slds-modal__header .closeBtn{
+    float:right;
+    color:white;
+    font-size:35px;
+    cursor: pointer;
+}
+
+.THIS #listbox-unique-id .slds-dropdown{
+    z-index:400;
+}
+.THIS .slds-form-element__help.error{
+    font-weight: initial;
+    font-size: 1rem;
+}
+
+/* Responsive Mobile and Tablet css */
+
+@media only screen and (min-width: 1024px) {
+    .THIS .radio-special .uiInput--default.uiInput--radio input:hover ~ label img:nth-child(2){
+        display: block;
+        margin: auto;
+    }
+    
+    .THIS .radio-special .uiInput--default.uiInput--radio input:hover ~ label img:nth-child(1){
+        display: none; 
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .THIS .backButton{
+        padding:2% 7%;  
+    }
+ 
+}
+
+
+/* Responsive Mobile css */
+@media only screen and (max-width: 768px) {
+	.THIS .stickyFooter {
+         width:50%;
+    }
+    .THIS .accidentSketchPopUp .container{
+        width:auto;
+    }
+    
+    .THIS .accidentSketchPopUp{
+        width:50%;       
+        padding:50px 14px;
+    }
+    
+    .THIS .accidentSketchPopUpContainer .closePopup{
+        left: 45%;
+    }
+
+}
+
+/* Responsive Mobile css */
+@media only screen and (max-width: 767px) {
+    .THIS .desktopView{
+        display:none;
+    }
+    .THIS .mobileView{
+        display:block;
+    }
+    .THIS .claimDetailsForm .heading_large{
+        font-size: 26px;
+    }
+    .THIS .claimDetailsForm .step1 .slds-form-element__label{
+        font-size: 16px;
+    }
+    .THIS #closeFormBtn{
+        width:100%;
+    }
+    .THIS .stickyFooter{
+        width:100%;
+        text-align:center;
+        position:fixed;
+        left:0;
+        bottom:0;
+        height:120px;
+        background-color: #fafbfb;
+        border-top:1px solid #c1c6d0;
+        padding:10px
+    }
+    .THIS .stickyFooter.mobileStickyFooter{
+        height:70px;
+    }
+    .THIS .stickyFooter hr{
+        box-shadow:none;
+        margin:0;
+        height:0;
+    }
+    
+    .THIS .stickyFooter #proceedBtnMobile,
+    .THIS .stickyFooter #submitBtn{
+        height:45px;
+        width:50%;
+        min-width:auto;
+        font-size: 20px;
+        border-top-left-radius: 0;
+    	border-bottom-left-radius: 0;
+        margin:0;
+        top:58px;
+    }
+     .THIS .stickyFooter.mobileStickyFooter #proceedBtnMobile{
+        top:0;
+    }
+    
+    .THIS .stickyFooter #exitBtn,
+    .THIS .stickyFooter #SaveExit{
+        height:45px;
+        width:50%;
+        min-width:auto;
+        border:1px solid #e8007f;
+        display:inline-block;
+        font-size: 18px;
+        text-decoration: none;
+        padding:10px;
+        color: #e8007f;
+        border-top-left-radius: 4px;
+    	border-bottom-left-radius:4px;
+    }    
+    .THIS .stickyFooter #saveButn{
+       position:absolute;
+       top:18px;
+       border:1px solid #c1c6d0;
+       border-radius: 4px;
+  	   background-color: #ffffff;
+       padding:8px;
+       font-size: 18px;
+       width:93%;
+       left:10px;
+       text-decoration: none;
+    }
+    .THIS .stickyFooter #SaveExit{
+        position:relative;
+        top:58px;
+    }
+    .THIS .stickyFooter .vericalDivider{
+        display:none;
+    }
+    .THIS .stickyFooter .fileStatus,
+    .THIS .stickyFooter .applicationSaved{
+        position:absolute;
+    }
+    .THIS .stickyFooter .applicationSaved{
+        top:0;
+        left:20%;
+    }
+    .THIS .stickyFooter .slds-spinner{
+        top:20px;
+        margin:0;
+    }
+    .THIS .declarationText{
+        left:0;
+    }
+    .THIS .claimDetailsForm{
+        padding: 0 5px 100px;
+    }
+    .THIS .declarationList li{
+        margin:0 20px;
+    }
+    .THIS .backButton{
+        padding:0;
+    }
+    .THIS .payment label img{
+        float:none;
+    }
+    .THIS .payment label span{
+        display:block;
+    }
+    .THIS .preferredEmail .slds-form-element__control .slds-radio{
+        margin-bottom:5px;
+    }
+    .THIS .slds-form-element__control.icon-prefix > .slds-icon_container:first-child .slds-icon,
+    .THIS .slds-form-element__control.icon-prefix .slds-icon{
+        top:21px;
+        width:16px;
+        height:16px;
+    }
+    .THIS .backButton{
+        margin-bottom:20px;
+    }
+    .THIS .slds-radio .slds-form-element__label{
+        font-size: 16px;
+    }
+    .THIS .slds-accordion__summary-heading{
+        font-size: 16px;
+        padding-top:3px;
+    }
+    .THIS .claimDetailsForm .heading_medium{
+        font-size: 20px;
+    }
+    .THIS .claimDetailsForm .heading_small{
+        font-size: 16px;
+    }
+    .THIS .slds-form-element__control .slds-radio{
+        margin-bottom:5px;
+    }
+    .THIS .injuries .action-icon{
+        padding:20px 0;
+    }
+    .THIS .injuries h3{
+        padding:20px 0;
+    }
+    .THIS .ambulanceOptions .slds-form-element__control .slds-radio{
+        margin:0;
+    }
+    .THIS #previousIllness{
+        padding-bottom:50px;
+    }
+    /* Help modal mobile css */
+    .THIS .helpModal .slds-modal__container{
+        margin:0;
+        padding:20px;
+        font-size:16px;
+    }
+    .THIS .helpModal .slds-modal__container .container{
+        width:100%;
+    }
+    .THIS .helpModal .slds-modal__container .container .slds-button_neutral_secondary{        
+        width: 88%;
+        position: absolute;
+        bottom: 20px;
+    }
+    .THIS .helpModal .slds-modal__container .closeModel{
+        left:85%;
+    }
+    .THIS .helpModal .slds-modal__container .container .header {
+        font-size:24px;
+    }
+    .THIS .helpModal .slds-modal__container .container .helptext{
+        font-size:14px;
+    }
+    .THIS .helpModal .slds-modal__container .container .circle{
+        padding:0;
+    }
+    .THIS .helpModal .slds-modal__container .container .circle .slds-icon{
+        width:20px;
+        height:20px;
+    }
+    .THIS .survey-header{ 
+        padding-left:8px;
+    }
+    
+    .THIS .survey-subheader{ 
+        padding-left:8px;  
+    }
+    
+    .THIS .accidentSketchPopUp{
+        height: 100%;
+        width: 100%;
+        z-index: 1001;
+        padding: 44px 5%;
+        border-radius:0;
+    }
+    
+    .THIS .accidentSketchPopUp .container .title{
+        font-size: 16px;
+        font-weight: normal;    
+    }
+    
+    .THIS .accidentSketchPopUp .freehandSketchLabel .text{
+    	font-size: 16px;
+        font-weight: normal;    
+    }
+    
+    
+    .THIS .accidentSketchPopUp .container .path{
+        font-size: 14px;
+    }
+
+    .THIS .accidentSketchPopUpContainer .closePopup{
+       display:none;
+    }
+    
+    .THIS .accidentSketchPopUpContainer .closeIcon{
+        display: block;
+        position: absolute;
+        right: 16px;
+        box-shadow: none;
+        margin-top: -24px;
+    }
+    
+    .THIS .accidentSketchPopUpContainer .closePopupDiv{
+        display: block;
+        padding-top: 50px;
+     }
+    
+    .THIS .accidentSketchPopUpContainer .closePopupBtn{
+    	background-color: #ffffff;
+        color: #005490; 
+        width: 100%;
+        display: block;
+        border-color:#ffffff;
+	}
+
+ 	.THIS .accidentSketchPopUp .container{
+        width:100%;
+        height: auto;
+    }
+    
+    .THIS .accidentSketchPopUp .heading{
+        font-size: 20px;
+    }
+    
+    .THIS .helpModal .slds-modal__container .container .circle{
+        padding: 10px;
+    }
+    
+    .THIS .modalSubmission .commonModel .slds-modal__footer {
+       background-color: #ffffff;
+       border: solid 1px #c1c6d0;
+       padding: 20px;
+   }
+   .THIS .slds-modal__container{
+       width: 100%;
+       height: 100%;
+       padding: 0;
+       margin: 0;
+       bottom: 0;
+       margin-bottom: 0px;
+       float: left;
+       margin-top: 0px;
+   }
+   .THIS .slds-modal.slds-slide-up-saving.commonModel{
+           height: 103%;
+   }
+   .THIS .modalSubmission .commonModel header{
+        height:70px;
+    }
+    .THIS .modalSubmission.insurerModel .commonModel header{
+        height:auto;
+    }
+    .THIS .modalSubmission.insurerModel .commonModel .slds-modal__content,
+    .THIS .modalSubmission.insurerModel .commonModel .grayBackground .slds-grid,
+    .THIS .modalSubmission.insurerModel .commonModel .grayBackground .slds-grid.plaintex{
+        font-size:14px;
+    }
+    
+    .THIS .modalSubmission .commonModel header p{
+        font-size: 20px;
+        padding: 25px;
+        width:80%;
+    }
+   
+    .THIS .modalSubmission .commonModel .slds-modal__header .closeModal{
+        width:20%;
+    }
+    .THIS .modalSubmission .commonModel .grayBackground .sectionPinkHeader,
+    .THIS .modalSubmission .commonModel .grayBackground .slds-grid .infoContainer .sectionHeader{
+        font-size: 18px;
+    }
+    .THIS .modalSubmission .commonModel .slds-modal__footer .slds-button_brand{
+        min-width:100%;
+        border-top-left-radius:0px;
+        border-bottom-left-radius:0px;
+    }
+    
+    .THIS .submitFlow .commonModel .slds-modal__footer .returnToApplication{
+        padding: 0;
+        margin-right: 0px;
+        font-size: 14px;
+        border: solid 1px #e8007f;
+        min-height:44px;
+        text-align:center;
+        color: #e8007f;
+        border-top-left-radius:3px;
+        border-bottom-left-radius:3px;
+    }
+    
+    .THIS .submitFlow .commonModel .slds-modal__content{
+        padding: 24px 30px 6px 30px;
+        min-height:75%
+    }
+    .THIS .submitFlow .slds-button_neutral_secondary{
+        min-width:100%;
+        background-color:#e8007f;
+        color:#fff;
+    }
+    .THIS .submitFlow .sectionHeader{
+        font-size: 18px;
+    }
+    .THIS .submitFlow .commonModel .subSectionHeader{
+        font-size: 14px;
+    }
+    
+    .THIS .submitFlow .commonModel .slds-modal__footer {
+        height: 80px;
+    }
+    .THIS .registeredVehicleInfo .text{
+        opacity:unset;
+        border:0;
+    }
+    .THIS .registeredVehicleInfo .image {
+        margin:20px 0;
+        text-align:center;
+    }
+    .THIS .fraudTextContainer{
+        border-left-width:8px;
+    }
+     .THIS .commonModel header p{
+        font-size: 20px;
+    }
+     .THIS .commonModel .subheading {
+        font-size: 18px;
+    }
+    .THIS .commonModel .slds-modal__content,
+    .THIS .estimated-submission{
+        font-size: 14px;
+    }
+    .THIS .commonModel .slds-modal__header .closeBtn{
+        float:right;
+        color:white;
+        font-size:20px;
+        cursor: pointer;
+    }
+}

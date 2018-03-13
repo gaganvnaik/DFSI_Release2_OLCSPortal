@@ -1,0 +1,530 @@
+<!-- 
+  @CTP_FileAttachment: 
+     Component used to attach files against Cases and Case Items.
+ -->
+
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId" controller="DRS_CaseItemForm_CC">
+    <ltng:require scripts="/resource/jquery" />
+    <aura:attribute name="parentId" type="Id" description="mandatory id to load the component"/>
+    <aura:attribute name="uploadToCase" type="String" default="No"/>
+    <aura:attribute name="applicationFile" type="String" default="No"/>
+    <aura:attribute name="caseItemId" type="Id" description="case item id any item exist against this application"/>
+    <aura:attribute name="uploadForm" type="String" description="String used to send JSON to apex class which will insert Attachment record and return relative URL for AWS S3 service"/>
+    <aura:attribute name="pageName" type="String"/>
+    <aura:attribute name="maxFilesNum" type="Integer" default="3" description="This value sets the maximum amount of files allowed to upload at once"/>
+    <aura:attribute name="uploadNewFilesNum" type="Integer" default="0" description="integer value used to keep track of amount of new files added to upload"/>
+    <aura:attribute name="uploadedFiles" type="Attachment__c" description="array used to store all files, their descriptions, categories and sub-categories, upload Status"/>
+    <aura:attribute name="uploadedUnCatFiles" type="String[]" description="array used to store all files, their descriptions, categories and sub-categories, upload Status"/>
+    <aura:attribute name="progressPercentage" type="Integer" default="0" description="integer value used in progress bar"/>
+    <aura:attribute name="categories" type="String[]" default="[]" description="array used to hold categories for insurer portal"/>
+    <aura:attribute name="subCategories" type="String[]" description="array used to hold sub-categories for insurer portal"/>
+    <aura:attribute name="replyPortal" type="Boolean" default="false" description="boolean value to track if this page is case item reply page or not."/>
+    <aura:attribute name="internalPortal" type="Boolean" default="false" description="boolean value to track if this page is salesforce internal page or not."/>
+    <aura:attribute name="isForceRecord" type="Boolean" default="false"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="objectName" type="String"/>
+    <aura:attribute name="uploadBtnDisabled" type="Boolean" default="false" description="Boolean value to enable/disable upload button"/>
+    <aura:attribute name="isReadonly" type="Boolean" default="false" description="Boolean value to enable/disable uploading files"/>
+    <aura:attribute name="legalType" type="String" default=""/>
+    
+    <aura:attribute name="emptyArray" type="String[]" default="[]"/>
+    <!-- Start: Arrays to hold picklist values for Sub-Categories -->
+    
+    <aura:attribute name="ApplicationDocumentsSubCategoryTypes" type="String[]"/>
+    <aura:attribute name="SIRADocumentsSubCategoryTypes" type="String[]"/>
+    <aura:attribute name="MedicalInformationSubCategoryTypes" type="String[]"/>
+    <aura:attribute name="OccupationalRehabilitationSubCategoryTypes" type="String[]"/>
+    <aura:attribute name="EmploymentSubCategoryTypes" type="String[]"/>
+    <aura:attribute name="LegalSubCategoryTypes" type="String[]"/>
+    <aura:attribute name="SurveillanceSubCategoryTypes" type="String[]"/>
+    <aura:attribute name="CorrespondenceSubCategoryTypes" type="String[]"/>
+    <aura:attribute name="ExpensesSubCategoryTypes" type="String[]"/>
+    <aura:attribute name="portalName" type="String"/>
+    <aura:attribute name="stage" type="String"/>
+    <!-- Added for DCR-1332 -->
+    <aura:attribute name="caseId" type="String"/>
+    <aura:attribute name="caseItemIdReply" type="String"/>
+    <!-- Added for DCR-1332 --> 
+    
+    <aura:attribute name="descriptionEdit" type="String"/>
+    <!--<aura:attribute name="attachmentId" type="String"/> -->
+    
+    <!--DCR-3109 : Retrieve Draft:4.12.17:: Subhajit :Starts -->
+    <aura:attribute name="retrieveApplicationAttachments" type="Attachment__c[]"/>
+    <!--DCR-3109 : Retrieve Draft:4.12.17:: Subhajit :Starts -->
+    
+    <!--DCR-3929 : Contact DRO:25.01.18:: Shreya :Starts -->
+    <aura:attribute name="contactDRO" type="Boolean"/>
+    <aura:attribute name="attachementIdList" type="String[]"/>
+    <!--DCR-3929 : Contact DRO:25.01.18:: Shreya :Starts -->
+    
+    <!-- End: Arrays to hold picklist values for Sub-Categories -->
+    <!--<aura:attribute name="record" type="Object"/>
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+   <aura:attribute name="recordId" type="String"/>
+   <aura:attribute name="fieldsToQuery" type="String[]" default="Case__c"/>
+   <aura:attribute name="isForceRecord" type="Boolean" default="false"/>
+   <aura:attribute name="AttachmentWrapper" type="UCDInfoAttachmkentWrapper[]"/>
+   <aura:attribute name="isTrue" type="Boolean" default="false"/>
+   <aura:attribute name="fileUploadValidationError" type="Boolean"/>
+   <aura:attribute name="description" type="String"/>
+   <aura:attribute name="author" type="String"/>
+   <aura:attribute name="insertDate" type="Date"/>
+   <aura:attribute name="fileName" type="String"/>
+   <aura:attribute name="targetFile" type="Object"/>
+   <aura:attribute name="content" type="string"/>
+   <aura:attribute name="parent" type="Object"/>
+   <aura:attribute name="attachment" type="Attachment__c"/>
+   <aura:attribute name="isCategorize" type="boolean" default="false"/> -->
+    
+    <aura:attribute name="isMyApplication" type="Boolean" default="false"/>
+    <aura:attribute name="isApplicationdetail" type="Boolean" default="false"/>
+    <aura:attribute name="isUploadedFile" type="Boolean" default="false"/>
+    
+    <!-- Added by Marco: variable will trigger text field to show when too many files are selected to upload -->
+    <aura:attribute name="filesOverload" type="Boolean" default="false"/>
+    
+    <!-- Added by Mathieu - DCR 8603 -->
+    <aura:attribute name="isNew" type="String" default="No"/>
+    
+    <aura:handler name="init" value="{! this}" action="{! c.doInit}"/>
+    <aura:method name="loadApplications" action="{!c.loadApplications}"/>
+    <aura:method name="Submitfiles" action="{!c.Submitfiles}" access="PUBLIC"/>
+    <aura:method name="navigateEvent" action="{!c.callevent}" access="PUBLIC"/>
+    <!--Added for DCR-3634 -OLCS-Start-->
+    <aura:attribute name="showVar" type="Boolean" default="false"/> 
+    <aura:attribute name="isCTPAssistUser" type="Boolean" default="false"/>
+    <aura:attribute name="caseRecordId" type="String" default=""/>
+    
+    <aura:registerEvent name="refreshCmpEvent" type="c:CTP_FileAttachment_ComponentEvent"/>   
+    <!--Added for DCR-3634 -OLCS-End-->
+    
+    <aura:registerEvent name="refreshfile" type="c:CTP_FileAttachment_Refresh"/>
+    <aura:registerEvent name="getAttachmentDetails" type="c:CTP_SendAttachmentDetails_ContactDRO"/>
+    
+    
+    <!--DCR-4960:Start : Nikunj-->
+    
+    <aura:attribute name="docDate" type="String" default=""/>
+    <aura:attribute name="progress" type="Integer" default="0"/>
+    
+    <!--DCR-4960:end : Nikunj-->
+    
+    
+    <aura:attribute name="categoryMap" type="Map"/>
+    
+    
+    <!--Added for DCR-3730-OLCS-Start-->
+    <aura:if isTrue="{! v.pageName != 'claim portal'}">
+        <!--Added for DCR-3730-OLCS-End-->
+        <!--  <h1 class="slds-text-body_xx-large slds-m-bottom_large headLabel">Supporting Documents</h1>-->
+        <!-- <aura:if isTrue="{! and(not(v.internalPortal), not(v.isReadonly))}">
+            <aura:if isTrue="{! v.portalName == 'public'}"><p class="slds-m-bottom_xx-large">{!$Label.c.CTP_Public_Portal_File_Attachment_Message}</p></aura:if>
+            <aura:if isTrue="{! v.portalName == 'legal'}"><p class="slds-m-bottom_xx-large">{!$Label.c.CTP_Legal_Portal_File_Attachment_Message}</p></aura:if>
+            <aura:if isTrue="{! v.portalName == 'insurer'}"><p class="slds-m-bottom_xx-large">{!$Label.c.CTP_Insurer_Portal_File_Attachment_Message}</p></aura:if>
+            <aura:if isTrue="{! v.portalName == 'assessor'}"><p class="slds-m-bottom_xx-large">{!$Label.c.CTP_External_Assessor_Portal_File_Attachment_Message}</p></aura:if>
+            -->
+        <!-- <p class="slds-m-bottom_xx-large">You may upload documents that support your application. The insurer is liable to provide all documents that have currently been received.  You are able to attach files of different types (images, video, documents) to the application. The size limit for upload is 2GB per file.</p> -->
+        <!--</aura:if>-->
+    </aura:if>
+    <aura:if isTrue="{! and(v.pageName == 'public homepage',and(v.uploadedUnCatFiles.length > 0, true),false) }">
+        <div class="container hide">
+            <div class="attachment-list">
+                <aura:iteration items="{! v.uploadedUnCatFiles}" var="file">
+                    
+                    <!-- <aura:iteration items="{! v.uploadedFiles}" var="file">-->
+                    <div class="attachment slds-size_1-of-1 slds-medium-size_3-of-3 slds-p-right_x-large slds-p-bottom_x-large slds-grid_horizontal-align-start">
+                        <div class="slds-m-bottom_small slds-grid slds-grid_vertical-align-center mr15">
+                            <lightning:icon iconName="utility:page" size="small"/>
+                            
+                            <div class="filename slds-truncate slds-m-right_small slds-col" title="{! file.fileName}">
+                                <span class="file_name">{!file.fileName}</span>
+                                <!--DCR 4194-->
+                                <aura:if isTrue="{!file.attachmentUrl == null}">
+                                    <aura:if isTrue="{!file.status}">
+                                        <div class="uploading-status">
+                                            
+                                            <span><i>Upload Status - </i></span>
+                                            <aura:if isTrue="{!file.status == 'upload'}">
+                                                <span class="fileStatus" style="color: #228d4b;"><i>uploading</i></span>
+                                                
+                                                <div class="slds-progress-bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{!v.progress}" role="progressbar">
+                                                    <span class="slds-progress-bar__value" style="{!'width: '+ v.progress +'%'}">
+                                                        <span class="slds-assistive-text">Progress: {!v.progress}%</span>
+                                                    </span>
+                                                </div>
+                                                <!--<lightning:icon iconName="utility:spinner" size="x-small" class="spinner slds-m-left_xx-small"/>-->
+                                            </aura:if>
+                                            <aura:if isTrue="{!file.status == 'success'}">
+                                                <span class="fileStatus" style="color: #228d4b;"><i>complete</i></span>
+                                            </aura:if>
+                                            <aura:if isTrue="{!file.status == 'error'}">
+                                                <span class="fileStatus" style="color: #e8007f;"><i>failed</i></span>
+                                            </aura:if>
+                                        </div>
+                                    </aura:if>
+                                </aura:if>
+                            </div>
+                            <!--
+                        <div id="{! 'attachDiv'+ file.index}" aura:id="{! file.file.name + 'progressBar'}" class="slds-progress-bar slds-progress-bar_large slds-progress-bar_circular slds-m-top_x-small" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" role="progressbar">
+                            <span class="slds-progress-bar__value" style="width:0%" id="{! 'attachSpan'+ file.index}">
+                                <span class="slds-assistive-text">{!file.progressPercentage}%</span>
+                            </span>
+                        </div>-->
+                            
+                            
+                            <aura:if isTrue="{! v.portalName != 'public'}">
+                                <lightning:buttonIcon name="{!file.index}" aura:id="{!file.index}" class="action-icon" iconName="utility:delete" variant="bare" onclick="{! c.removeAttachment }" alternativeText="Remove" />
+                            </aura:if>
+                            <aura:if isTrue="{! v.portalName == 'public'}">
+                            <!-- MARCO CHANGE START 9/2/2018 -->
+                            <!-- Marco: 9/2 | show download & remove icon when new file uploaded -->
+                                <aura:if isTrue="{!or(v.isMyApplication, v.isApplicationdetail)}">
+                                    <aura:if isTrue="{!file.isNew}">
+                                        <aura:if isTrue="{!file.attachmentUrl != null}">
+                                            <div>
+                                                <lightning:buttonIcon name="{!file.index}" aura:id="{!file.index}" class="action-icon" iconName="utility:delete" variant="bare" onclick="{!c.removeAttachment}" alternativeText="Remove"/>
+                                                <a href="{!file.attachmentUrl}" target="_blank" style="padding-left: 2px"><lightning:buttonIcon iconName="utility:download" variant="bare" alternativeText="Download"/></a>
+                                            </div>
+                                            <aura:set attribute="else">
+                                                <lightning:buttonIcon name="{!file.index}" aura:id="{!file.index}" class="action-icon" iconName="utility:delete" variant="bare" onclick="{!c.removeAttachment}" alternativeText="Remove"/>
+                                            </aura:set>
+                                        </aura:if>
+                                        <aura:set attribute="else">
+                                            <a href="{!file.attachmentUrl}" target="_blank"><lightning:buttonIcon iconName="utility:download" variant="bare" alternativeText="Download"/></a>                                    
+                                        </aura:set>
+                                    </aura:if>
+                                        <aura:set attribute="else">
+                                            <lightning:buttonIcon name="{!file.index}" aura:id="{!file.index}" class="action-icon" iconName="utility:delete" variant="bare" onclick="{!c.removeAttachment}" alternativeText="Remove"/>
+                                        </aura:set>
+                                </aura:if>
+                            </aura:if>
+                        </div>
+                        
+                        <div class="{!file.attachmentUrl == null? 'detailSec': 'detailSec readOnly slds-hide'}">
+                            <div class="{!file.attachmentUrl == null? '': 'detailSecEle'}">
+                                <div class="{!file.attachmentUrl != null? '': 'slds-hide'}"><hr/></div>
+                                <div class="{!file.attachmentUrl == null? 'slds-form-element mr10': 'slds-form-element mr10 readSection'}">
+                                    <label class="slds-form-element__label">Document date</label>
+                                    <div class="slds-form-element__control icon-prefix">
+                                        
+                                        <aura:if isTrue="{!file.attachmentUrl != null}">
+                                            <div><ui:outputDate format="dd/MM/yyyy" value="{!file.documentDate}"/></div>
+                                            <aura:set attribute="else">
+                                                <lightning:icon iconName="utility:event" variant="event"/>
+                                                <ui:inputDate format="dd/MM/yyyy" class="field borderClass" aura:id="docDate"  updateon="keyup" value="{!file.documentDate}" displayDatePicker="true" blur=""/>
+                                            </aura:set>
+                                        </aura:if>
+                                        
+                                        
+                                    </div>
+                                </div>
+                                <div class="{!file.attachmentUrl == null? 'description slds-truncate slds-col slds-form-element mr10': 'description slds-truncate slds-col slds-form-element mr10 readSection'}" id="{! 'description'+file.index}" title="{!file.description}">
+                                    <label class="slds-form-element__label">Description</label>
+                                    <div class="slds-form-element__control">
+                                        <!--<lightning:button name="{!'description'+file.index+'url'}" class="slds-m-right_x-small" onclick="{!c.focusTextareaDesc}">Add Description</lightning:button -->
+                                        <!--<input type="text" rows="1" value="{!file.description}" class="textarea noresize uiInput uiInputTextArea uiInput-default uiInput-textarea desc"  id="{! 'description'+file.index+'text'}" resizable="false" updateon="keyup" placeholder="Add Description"/>-->
+                                        <aura:if isTrue="{!file.attachmentUrl != null}">
+                                            <ui:inputTextArea rows="3" value="{!file.description}" class="{! 'description'+file.index+'text textdisable'}"  resizable="true" updateon="keyup" placeholder="" disabled="true"/>
+                                            <aura:set attribute="else">
+                                                <ui:inputTextArea rows="3" value="{!file.description}" class="{! 'description'+file.index+'text'}"  resizable="true" updateon="keyup" placeholder="Please write a document description here"/>
+                                            </aura:set>
+                                        </aura:if>
+                                    </div>
+                                    <!-- Commented edit icon as mentioned in DCR-3368  -->
+                                    <!--<lightning:buttonIcon name="{!'description'+file.index}" class="action-icon slds-m-right_x-small" iconName="utility:edit" variant="bare" alternativeText="Edit Description" onclick="{!c.focusTextarea}" /> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aura:iteration>
+            </div>
+        </div>
+        
+    </aura:if>
+    
+    <!--Added for DCR-3730-OLCS-Start-->
+  
+    <aura:if isTrue="{!or(and(or(v.pageName == 'insurer portal' || v.pageName == 'internal page'),and(v.uploadedUnCatFiles.length > 0, true),false),or(and(and(v.pageName == 'claim portal',v.showVar == true),and(v.uploadedUnCatFiles.length > 0, true)), v.isCTPAssistUser))}"> 
+        <!--Added for DCR-3730-OLCS-End-->
+       
+        <aura:iteration items="{!v.uploadedUnCatFiles}" var="file" indexVar="key">
+            <div class="attachment uploadFile cCTP_FileAttachment">
+                <div class="slds-m-bottom_small slds-grid slds-grid_vertical-align-center">
+                    <lightning:icon iconName="utility:page" size="small"/>
+                    <div class="filename slds-truncate slds-m-right_small slds-col" title="{! file.fileName}" id="{!'fileName'+file.index}">
+                        <span class="file_name">{!file.fileName}</span>
+                        <aura:if isTrue="{!v.pageName == 'claim portal'}">
+                            <div></div>
+                        </aura:if>
+                        <aura:if isTrue="{!file.attachmentUrl == null}">
+                            <aura:if isTrue="{!file.status}">
+                                <div class="uploading-status">
+                                    <span><i>Upload Status - </i></span>
+                                    <aura:if isTrue="{!file.status == 'upload'}">
+                                        <span class="fileStatus" style="color: #228d4b;"><i>uploading</i></span>
+                                        <div class="slds-progress-bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{!v.progress}" role="progressbar">
+                                            <span class="slds-progress-bar__value" style="{!'width: '+ v.progress +'%'}">
+                                                <span class="slds-assistive-text">Progress: {!v.progress}%</span>
+                                            </span>
+                                        </div>
+                                        <!-- <lightning:icon iconName="utility:spinner" size="x-small" class="spinner slds-m-left_xx-small"/>-->
+                                    </aura:if>
+                                    <aura:if isTrue="{!file.status == 'success'}">
+                                        <span class="fileStatus" style="color: #228d4b;"><i>complete</i></span>
+                                    </aura:if>
+                                    <aura:if isTrue="{!file.status == 'error'}">
+                                        <span class="fileStatus" style="color: #e8007f;"><i>failed</i></span> 
+                                    </aura:if>
+                                </div>
+                                <aura:if isTrue="{!or(v.pageName == 'claim portal',isCTPAssistUser)}">
+                                    <div class="slds-form-element__help slds-hidden" id="{! 'filesizeText'+file.index}">The file size is too large.<br/> Please try again or give it to the insurer later.</div>
+                                </aura:if>
+                            </aura:if>
+                        </aura:if>
+                    </div>
+                    <aura:if isTrue="{!v.pageName == 'claim portal'}">
+                        <div></div>
+                    </aura:if>
+                    <aura:if isTrue="{!file.status=='success'}">
+                    	<div class="description slds-truncate slds-col slds-grid slds-grid_vertical-align-center textdisable" id="{! 'description'+file.index}" title="{!file.description}"></div>
+                    	<aura:set attribute="else">
+                    		<div class="description slds-truncate slds-col slds-grid slds-grid_vertical-align-center" id="{! 'description'+file.index}" title="{!file.description}"></div>
+                        </aura:set>
+                  	</aura:if> 
+                    <a href="{!file.attachmentUrl}" target="_blank"><lightning:buttonIcon iconName="utility:download" variant="bare" alternativeText="Download"/></a>  <!-- added for DCR-8500 defect-->
+                    <lightning:buttonIcon name="{!file.index}" aura:id="{!file.index}" class="action-icon" iconName="utility:delete" variant="bare" onclick="{! c.removeAttachment }" alternativeText="Remove" />
+                </div>
+                
+                <div class="slds-m-bottom_small slds-grid slds-grid_vertical-align-center mBottom pTop10">
+                    
+                    <div class="slds-truncate slds-col mb15">
+                        <div class="slds-truncate" title="{! file.category}">
+                            <div class="slds-form-element mBottom" aura:id="{!'category'+file.index}" id="{!'category'+file.index}">
+                                <label class="slds-form-element__label" for="select-01">
+                                    <abbr class="slds-required" title="required"></abbr> Select Category</label>
+                                 <aura:if isTrue="{! v.pageName != 'claim portal'}">
+                                <div class="slds-form-element__control">     
+                                    <aura:if isTrue="{!file.status=='success'}">
+                                        <ui:inputText class="display-input" aura:id="category" value="{! file.category}" disabled="true" />
+                                        <aura:set attribute="else">
+                                            <!-- <ui:inputSelect value="{! file.category}"  aura:id="{!'categorySelect'+key}" change="{! c.categoryChanged}">
+                                                <aura:iteration items="{!v.categories}" var="category">
+                                                    <ui:inputSelectOption text="{!category}" label="{!category}"/>
+                                                </aura:iteration>
+                                            </ui:inputSelect> -->
+                                            <select data-aura-class="uiInput uiInputSelect uiInput--default uiInput--select" class="select uiInput uiInputSelect uiInput--default uiInput--select" size="1" value="{! file.category}" aura:id="{!'categorySelect'+key}" id="{!'categorySelect'+key}" data-categoryId="{! 'categorySelect'+key}" onchange="{!c.categoryChanged}">
+                                                <aura:iteration items="{!v.categories}" var="category">
+                                                    <option value="{! category}" class="uiInputSelectOption" data-aura-class="uiInputSelectOption">{!category}</option>
+                                                </aura:iteration>
+                                            </select>
+                                        </aura:set>    
+                                    </aura:if>
+                                    </div>
+                                </aura:if>
+                                    <!-- Added as part of DCR-3730 Parul  16.02.2018 Start-->
+                                    <aura:if isTrue="{!(v.pageName == 'claim portal'|| isCTPAssistUser)}">
+                                                 <!--  <div class="slds-form-element__control">     
+                                                        <aura:if isTrue="{!and(v.retrieveApplicationAttachments.length > 0 , file.status=='success')}">
+                                                            <ui:inputText class="display-input" aura:id="category" value="{! file.category}" disabled="true" />
+                                                            <aura:set attribute="else"> 
+                                                               
+                                                                <ui:inputSelect value="{! file.category}"  aura:id="{!'categorySelect'+file.index}" change="{! c.categoryChanged}">
+                                                                    <aura:iteration items="{!v.categories}" var="category">
+                                                                         
+                                                                        <option text="{!category}" label="{!category}"/>
+                                                                    </aura:iteration>
+                                                                </ui:inputSelect>
+                                                            </aura:set>    
+                                                        </aura:if>    
+                                                    </div>  -->
+                                                       <div class="slds-form-element__control">     
+                                    <aura:if isTrue="{!file.status=='success'}">
+                                        <ui:inputText class="display-input" aura:id="category" value="{! file.category}" disabled="true" />
+                                        <aura:set attribute="else">
+                                            <!-- <ui:inputSelect value="{! file.category}"  aura:id="{!'categorySelect'+key}" change="{! c.categoryChanged}">
+                                                <aura:iteration items="{!v.categories}" var="category">
+                                                    <ui:inputSelectOption text="{!category}" label="{!category}"/>
+                                                </aura:iteration>
+                                            </ui:inputSelect> -->
+                                            <select data-aura-class="uiInput uiInputSelect uiInput--default uiInput--select" class="select uiInput uiInputSelect uiInput--default uiInput--select" size="1" value="{! file.category}" aura:id="{!'categorySelect'+key}" id="{!'categorySelect'+key}" data-categoryId="{! 'categorySelect'+key}" onchange="{!c.categoryChanged}">
+                                                <aura:iteration items="{!v.categories}" var="category">
+                                                    <option value="{! category}" class="uiInputSelectOption" data-aura-class="uiInputSelectOption">{!category}</option>
+                                                </aura:iteration>
+                                            </select>
+                                        </aura:set>    
+                                    </aura:if>
+                                    </div>
+                                     
+                                    </aura:if>
+                                     <!-- Added as part of DCR-3730 Parul  16.02.2018 End-->
+                               
+                                <div class="slds-form-element__help slds-hidden" id="{!'categoryErrorText'+file.index}">This field is required</div> 
+                                <!--     <div class="slds-form-element__control">
+                               
+                                    <lightning:select value="{! file.category}" name="{! 'categorySelect'+file.index}" aura:id="{! 'categorySelect'+file.index}" onchange="{! c.categoryChanged}">
+                                        <aura:iteration items="{!v.categories}" var="category">
+                                            
+                                            <option value="{! category}">{! category}</option>
+                                        </aura:iteration>
+                                    </lightning:select>
+                               
+                            </div>-->
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!--Added for DCR-3730-OLCS-Start-->
+                <aura:if isTrue="{!v.pageName !='claim portal'}">
+                     <aura:if isTrue="{!!v.isCTPAssistUser}">
+                    <!--Added for DCR-3730-OLCS-End-->
+                    <div class="slds-truncate slds-col mb15">
+                        
+                        <div class="slds-truncate" title="{! file.subCategory}">
+                            <div class="slds-form-element mBottom" aura:id="{! 'subCategory'+file.index}" id="{! 'subCategory'+file.index}">
+                                <label class="slds-form-element__label" for="select-01">
+                                    <abbr class="slds-required" title="required"></abbr> Select Sub-Category</label>
+                                <div class="slds-form-element__control">
+                                    <aura:if isTrue="{!file.status=='success'}">
+                                        <ui:inputText class="display-input" aura:id="subCategory" value="{! file.subCategory}" disabled="true" />
+                                        <aura:set attribute="else">   
+                                            <select data-aura-class="uiInput uiInputSelect uiInput--default uiInput--select" class="select uiInput uiInputSelect uiInput--default uiInput--select" size="1" value="{! file.subCategory}"  aura:id="{! 'subCategorySelect'+file.index}" id="{! 'subCategorySelect'+file.index}" data-categoryId="{! 'subCategorySelect'+file.index}" onchange="{!c.subCategoryChanged}">
+                                            </select>
+                                            <!--<ui:inputSelect value="{! file.subCategory}"  aura:id="{! 'subCategorySelect'+file.index}" change="{! c.subCategoryChanged}">
+                                                 <aura:iteration items="{! 
+                                                                       if(file.category == 'Application Documents',v.ApplicationDocumentsSubCategoryTypes,
+                                                                       if(file.category == 'SIRA documents',v.SIRADocumentsSubCategoryTypes,
+                                                                       if(file.category == 'Medical information',v.MedicalInformationSubCategoryTypes,
+                                                                       if(file.category == 'Occupational rehabilitation services', v.OccupationalRehabilitationSubCategoryTypes,
+                                                                       if(file.category == 'Employment', v.EmploymentSubCategoryTypes,
+                                                                       if(file.category == 'Legal', v.LegalSubCategoryTypes,
+                                                                       if(file.category == 'Surveillance', v.SurveillanceSubCategoryTypes, 
+                                                                       if(file.category == 'Correspondence', v.CorrespondenceSubCategoryTypes, 
+                                                                       if(file.category == 'Expenses', v.ExpensesSubCategoryTypes,'')))))))))
+                                                                       }" var="SubCategory"> 
+                                                 <aura:iteration items="{! v.subCategories}" var="SubCategory" indexVar="key">
+                                                    <ui:inputSelectOption text="{!SubCategory}" label="{!SubCategory}"/>
+                                                </aura:iteration> 
+                                            </ui:inputSelect> -->
+                                            <!-- <lightning:select onchange="{! c.subCategoryChanged}" name="{! 'subCategorySelect'+file.index}" aura:id="{! 'subCategorySelect'+file.index}" value="{! file.subCategory}">
+                                    <aura:iteration items="{! 
+                                                           if(file.category == 'Application Documents',v.ApplicationDocumentsSubCategoryTypes,
+                                                           if(file.category == 'SIRA documents',v.SIRADocumentsSubCategoryTypes,
+                                                           if(file.category == 'Medical information',v.MedicalInformationSubCategoryTypes,
+                                                           if(file.category == 'Occupational rehabilitation services', v.OccupationalRehabilitationSubCategoryTypes,
+                                                           if(file.category == 'Employment', v.EmploymentSubCategoryTypes,
+                                                           if(file.category == 'Legal', v.LegalSubCategoryTypes,
+                                                           if(file.category == 'Surveillance', v.SurveillanceSubCategoryTypes, 
+                                                           if(file.category == 'Correspondence', v.CorrespondenceSubCategoryTypes, 
+                                                           if(file.category == 'Expenses', v.ExpensesSubCategoryTypes,'')))))))))
+                                                           }" 
+                                                    var="SubCategory">
+                                        <option value="{! SubCategory}">{! SubCategory}</option>
+                                    </aura:iteration>
+                                </lightning:select> -->
+                                        </aura:set>    
+                                    </aura:if>      
+                                </div>
+                                <div class="slds-form-element__help slds-hidden" id="{!'subCategoryErrorText'+file.index}">This field is required</div> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Document date</label>
+                        <div class="slds-form-element__control icon-prefix">
+                            <aura:if isTrue="{!file.attachmentUrl != null}">
+                                <div><ui:outputDate format="dd/MM/yyyy" value="{!file.documentDate}"/></div>
+                                <aura:set attribute="else">
+                                    <lightning:icon iconName="utility:event" variant="event"/>
+                                    <!-- DCR-6265 SIT defect :Solved by commenting updateon="keyup" :: Subhajit -->
+                                    <!--<ui:inputDate format="dd/MM/yyyy" class="field borderClass" aura:id="docDate"  updateon="keyup" value="{!file.documentDate}" displayDatePicker="true" blur=""/>-->
+                                    <ui:inputDate format="dd/MM/yyyy" class="field borderClass" aura:id="docDate"  value="{!file.documentDate}" displayDatePicker="true" />
+                                </aura:set>
+                            </aura:if>
+                        </div>
+                    </div>
+                    </aura:if>
+                </aura:if>
+                <div class="slds-col slds-form-element" id="{! 'description'+file.index}" title="{!file.description}">
+                    <label class="slds-form-element__label">Description</label>
+                    <div class="slds-form-element__control">
+                        <!--<lightning:button name="{!'description'+file.index+'url'}" class="slds-m-right_x-small" onclick="{!c.focusTextareaDesc}">Add Description</lightning:button>
+                        -->
+                        <!--<input type="text" rows="1" value="{!file.description}" class="textarea noresize uiInput uiInputTextArea uiInput-default uiInput-textarea desc"  id="{! 'description'+file.index+'text'}" resizable="false" updateon="keyup" placeholder="Add Description"/>-->
+                        <aura:if isTrue="{!file.attachmentUrl != null}">  
+                            <ui:inputTextArea rows="3" value="{!file.description}" class="{! 'description'+file.index+'text textdisable'}"  resizable="true" updateon="keyup" placeholder="" disabled="true"/>
+                            <aura:set attribute="else">
+                                
+                                <ui:inputTextArea rows="3" 
+                                                  value="{!file.description}" 
+                                                  class="{! 'description'+file.index+'text'}"  
+                                                  resizable="true" 
+                                                  updateon="keyup" 
+                                                  placeholder="Please write a document description here"/>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                    <!-- Commented edit icon as mentioned in DCR-3368  -->
+                    <!--<lightning:buttonIcon name="{!'description'+file.index}" class="action-icon slds-m-right_x-small" iconName="utility:edit" variant="bare" alternativeText="Edit Description" onclick="{!c.focusTextarea}" /> -->
+                </div>
+            </div>
+           
+            </aura:iteration>
+    </aura:if>
+    <aura:if isTrue="{!!v.isReadonly}">
+    	<div class="slds-form-element__help error slds-hidden" style="text-align:center" id="fileOverload" aria-live="assertive" aura:id="fileOverload"><b>Please select up to {!v.maxFilesNum} files</b></div>
+        <div class="slds-form-element">
+            <!--<label class="slds-form-element__label" for="fileAttachmentButton"><span class="slds-form-element__label" id="file-selector-id">{!$Label.c.CTP_File_Attachment_Heading}</span>
+            <div class="slds-form-element__icon" onmouseover="{! c.displayHelp}" onmouseout="{! c.displayHelp}">
+                <button class="slds-button slds-button_icon">
+                    <lightning:icon iconName="utility:info" size="xx-small" alternativeText="Help"/>
+                    <span class="slds-assistive-text">Help</span>
+                </button>
+            </div>
+            <div name="popover" class="slds-popover slds-popovertooltip slds-nubbinleft-top" role="tooltip" id="fileAttachmentHelp" style="top: -70px;left: 440px;position:relative;display:none" aura:id="fileAttachmentHelp"> 
+            <div class="slds-popover__body slds-text-longform" style="text-align: start;">{! $Label.c.CTP_File_Attachment_Subheading}</div> 
+             </div> 
+        </label> -->
+            <div class="uploadAct slds-hidden">
+                <button id="uploadBtn" aura:id="uploadBtn" class="slds-button slds-button_neutral slds-m-top_small slds-float_right" onclick="{! c.submitfiles}" >Upload</button>
+            </div>
+            <label class="slds-form-element__label">Upload Files: Size Limit (2GB per file) <div class="optional">optional</div></label>
+            
+            
+            <!-- <div  style="border:1px dashed black; height:300px; width:300px;" ondrop="{!c.onFileDrop}" ondragover="{!c.allowDrop}" onclick="{!c.onFileDrop}">Drop files here!</div>
+            -->
+            <div class="slds-clearfix">
+                <div  ondrop="{!c.onFileDrop}" ondragover="{!c.allowDrop}" onclick="{! c.fileButtonClicked }" >
+                    <lightning:button aura:id="fileAttachmentButton" class="dropzone" label="Drop files here to upload or choose file" iconName="utility:upload" iconPosition="left" onclick="{! c.fileButtonClicked }" />
+                </div>
+                <!--DCR-3929: code to resolve multiple component conflict inside DOM : Nikunj
+
+    <input class="attFile" multiple="true" type="file" style="display:none" id="fileInput" aria-describedby="file-selector-id" aura:id="fileInput" onchange="{!c.showfile}" />
+             -->     
+                <input class="attFile" multiple="true" type="file" id="fileInput" style="display:none" aria-describedby="file-selector-id" aura:id="fileInput" onchange="{!c.showfile}" />
+                
+                <!--<button onclick="{! c.categorizeDocuments}">Categorize</button> -->
+            </div>
+        </div>
+        
+        <div class="slds-hidden" id="myModalProgressBar" aura:id="myModalProgressBar" >
+            <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal" id="progressBarModal">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__content slds-p-around--medium">
+                        <div class="slds-progress-bar slds-progress-bar_large slds-progress-bar_circular" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25" role="progressbar">
+                            <span class="slds-progress-bar__value" style="{!('width:' + v.progressPercentage + '%;')}">
+                                <span class="slds-assistive-text">{!v.progressPercentage}%</span>
+                            </span>
+                        </div>
+                        <span class="slds-progress-bar-text">{!v.progressPercentage}%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop" aura:id="backdrop" id="backdrop"></div>
+        </div>
+    </aura:if>
+</aura:component>
